@@ -1,0 +1,7 @@
+cadastroAPI/.vscode
+cadastroAPI/tmp
+cadastroAPI/go.sum
+cadastroFront/.vscode
+cadastroFront/.angular
+cadastroFront/node_modules
+cadastroFront/package-lock.json
