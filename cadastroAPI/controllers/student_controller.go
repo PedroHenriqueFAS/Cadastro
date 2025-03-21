@@ -9,10 +9,10 @@ import (
 )
 
 type StudentController struct {
-	service *services.StudentService // Alterado para ponteiro
+	service *services.StudentService
 }
 
-func NewStudentController(service *services.StudentService) *StudentController { // Aceita ponteiro
+func NewStudentController(service *services.StudentService) *StudentController {
 	return &StudentController{service: service}
 }
 
@@ -27,7 +27,7 @@ func (ctrl *StudentController) CreateStudent(c *gin.Context) {
 }
 
 func (ctrl *StudentController) GetStudent(c *gin.Context) {
-	id := c.Param("id") // Obtém o ID como string diretamente
+	id := c.Param("id")
 	student, err := ctrl.service.GetStudent(id)
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
@@ -42,7 +42,7 @@ func (ctrl *StudentController) GetAllStudents(c *gin.Context) {
 }
 
 func (ctrl *StudentController) UpdateStudent(c *gin.Context) {
-	id := c.Param("id") // Obtém o ID como string diretamente
+	id := c.Param("id")
 	var student models.Student
 	if err := c.ShouldBindJSON(&student); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -57,7 +57,7 @@ func (ctrl *StudentController) UpdateStudent(c *gin.Context) {
 }
 
 func (ctrl *StudentController) DeleteStudent(c *gin.Context) {
-	id := c.Param("id") // Obtém o ID como string diretamente
+	id := c.Param("id")
 	err := ctrl.service.DeleteStudent(id)
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
